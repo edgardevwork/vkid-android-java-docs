@@ -1,0 +1,85 @@
+plugins {
+    alias(libs.plugins.android.application)
+    id "vkid.manifest.placeholders"
+}
+
+android {
+    signingConfigs {
+        debug {
+            storeFile file('D:\\disk-d\\CRMP\\TestVKID\\app\\test')
+            storePassword '123456'
+            keyAlias 'key0'
+            keyPassword '123456'
+        }
+        release {
+            storeFile file('D:\\disk-d\\CRMP\\TestVKID\\app\\test')
+            storePassword '123456'
+            keyAlias 'key0'
+            keyPassword '123456'
+        }
+    }
+    namespace 'com.edgar.testvkid'
+    compileSdk 36
+
+    defaultConfig {
+        applicationId "com.edgar.testvkid"
+        minSdk 34
+        targetSdk 36
+        versionCode 1
+        versionName "1.0"
+
+        defaultConfig {
+            manifestPlaceholders = [
+                    VKIDClientID     : "12345678",   // ID вашего приложения (app_id)
+                    VKIDClientSecret : "суда", // Ваш защищённый ключ (client_secret)
+                    VKIDRedirectHost : "vk.ru",      // Домен перенаправления (обычно vk.ru)
+                    VKIDRedirectScheme: "vk12345678"  // Cхема перенаправления (должна начинаться с "vk")
+            ]
+        }
+
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled true
+            shrinkResources true
+            debuggable false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+        debug {
+            minifyEnabled true
+            shrinkResources true
+            debuggable false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+    }
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_11
+        targetCompatibility JavaVersion.VERSION_11
+    }
+}
+
+dependencies {
+
+    implementation libs.appcompat
+    implementation libs.material
+    implementation libs.activity
+    implementation libs.constraintlayout
+    testImplementation libs.junit
+    androidTestImplementation libs.ext.junit
+    androidTestImplementation libs.espresso.core
+
+    // VK ID by EDGAR 3.0
+
+    implementation 'com.vk.id:vkid:2.6.0' // Основной пакет VK ID
+    implementation 'com.vk.id:onetap-compose:2.6.0' // Библиотека для компонуемых интерфейсов (Jetpack Compose)
+    implementation 'com.vk.id:onetap-xml:2.6.0' // Библиотека для XML-интерфейсов
+
+    implementation 'androidx.compose.material3:material3-android:1.3.2'
+
+    /*implementation 'com.vk.id:group-subscription-xml:<LATEST_VERSION>'
+    implementation 'androidx.compose.material3:material3-android:1.3.2'
+    implementation 'com.vk.id.captcha:vkid-captcha:<LATEST_VERSION>'
+    implementation 'com.vk.id.captcha:okhttp-interceptors:<LATEST_VERSION>'*/
+}

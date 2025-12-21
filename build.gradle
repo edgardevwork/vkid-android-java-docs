@@ -1,0 +1,18 @@
+// Top-level build file where you can add configuration options common to all sub-projects/modules.
+plugins {
+    alias(libs.plugins.android.application) apply false
+    id "vkid.manifest.placeholders" version "1.1.0" apply true
+}
+String clientId = "(ваш ид)12345678"
+String clientSecret = "(ваш)Защищенный ключ"
+
+// Добавление значений в Manifest Placeholders.
+vkidManifestPlaceholders {
+    // Добавьте плейсхолдеры сокращенным способом. Например, vkidRedirectHost будет "vk.ru", а vkidRedirectScheme будет "vk$clientId".
+    init(clientId, clientSecret)
+    // Или укажите значения явно через properties, если не хотите использовать плейсхолдеры.
+    vkidRedirectHost = "vk.ru" // Обычно vk.ru.
+    vkidRedirectScheme = "vk{$clientId}" // Строго в формате vk{ID приложения}.
+    vkidClientId = clientId
+    vkidClientSecret = clientSecret
+}
