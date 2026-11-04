@@ -37,16 +37,16 @@
 pluginManagement {
     repositories {
         ...
-        maven { url 'https://artifactory-external.vkpartner.ru/artifactory/vkid-sdk-android/' }
-        maven { url 'https://artifactory-external.vkpartner.ru/artifactory/maven/' }
+        maven { url 'https://nexus-external.vkteam.ru/repository/vkid-sdk-android/' }
+        maven { url 'https://nexus-external.vkteam.ru/repository/maven/' }
     }
 }
 dependencyResolutionManagement {
     repositories {
         ...
-        maven { url 'https://artifactory-external.vkpartner.ru/artifactory/vkid-sdk-android/' }
-        maven { url 'https://artifactory-external.vkpartner.ru/artifactory/maven/' }
-        maven { url 'https://artifactory-external.vkpartner.ru/artifactory/vk-id-captcha/android/' }
+        maven { url 'https://nexus-external.vkteam.ru/repository/vkid-sdk-android/' }
+        maven { url 'https://nexus-external.vkteam.ru/repository/maven/' }
+        maven { url 'https://nexus-external.vkteam.ru/repository/vk-id-captcha/android/' }
     }
 }
 ```
